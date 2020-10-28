@@ -72,15 +72,59 @@ theta_0 = np.zeros(X_train.shape[1])
 l_0 = cost_function(theta_0, X_train, y_train)
 print('Log-likelihood with initial theta: ', l_0)
 """
-
+"""
 # Test your implementation
 x_test = np.ones([2, 10])
 theta_0 = np.zeros(10)
 grad_0 = gradient_function(theta_0, x_test, 1.0)
 print(grad_0)
+"""
+"""
+# Test the final classifiers
+methods = ['sgd', 'newton', 'gda']
+
+for method in methods:
+    print('Evaluating {}\n'.format(method))
+    start = time.time()
+
+    if method == 'sgd':
+        theta, losses = logistic_SGD(X_train, y_train)
+    elif method == 'newton':
+        theta, losses = logistic_Newton(X_train, y_train)
+    elif method == 'gda':
+        theta, losses = gda(X_train, y_train)
+    else:
+        raise ValueError('Method not recognised!')
+
+    exec_time = time.time()-start
+    print('Total execution time: {}s'.format(exec_time))
+
+    pred_test, accuracy_test = predict_function(theta, X_test, y_test)
+    pred_train, accuracy_train = predict_function(theta, X_train, y_train)
+    print('\nTest accuracy: {}'.format(accuracy_test))
+    print('Training accuracy: {}\n'.format(accuracy_train))
+"""
 
 
 
+
+
+
+"""
+Difference between SGD and Newton 
+At a local minimum (or maximum) x, the derivative of the target function f vanishes: f'(x) = 0 (assuming sufficient smoothness of f).
+
+Gradient descent tries to find such a minimum x by using information from the first derivative of f:
+It simply follows the steepest descent from the current point. This is like rolling a ball down the graph of f until it 
+comes to rest (while neglecting inertia).
+
+Newton's method tries to find a point x satisfying f'(x) = 0 by approximating f' with a linear function g and then solving
+for the root of that function explicitely (this is called Newton's root-finding method). 
+The root of g is not necessarily the root of f', but it is under many circumstances a good guess. 
+While approximating f', Newton's method makes use of f'' (the curvature of f). 
+This means it has higher requirements on the smoothness of f, but it also means that (by using more information) it often converges faster.
+
+"""
 
 
 
