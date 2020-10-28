@@ -72,13 +72,15 @@ theta_0 = np.zeros(X_train.shape[1])
 l_0 = cost_function(theta_0, X_train, y_train)
 print('Log-likelihood with initial theta: ', l_0)
 """
-"""
+
 # Test your implementation
 x_test = np.ones([2, 10])
 theta_0 = np.zeros(10)
 grad_0 = gradient_function(theta_0, x_test, 1.0)
 print(grad_0)
-"""
+
+
+
 
 
 

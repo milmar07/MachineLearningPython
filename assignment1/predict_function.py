@@ -18,7 +18,9 @@ def predict_function(theta, X, y=None):
     #                                                                     #
     #######################################################################
     
-    pass
+    m=X.shape[0]
+    preds = np.zeros(m)
+    preds= np.round(sigmoid(X.dot(theta.T)))
 
     #######################################################################
     #                         END OF YOUR CODE                            #
